@@ -26,6 +26,7 @@ import Todo from "./components/Todo";
 // store
 const store = createStore(
   rootReducer,
+  //Redux Dev Tool set up
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 

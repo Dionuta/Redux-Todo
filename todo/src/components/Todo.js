@@ -2,7 +2,12 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 
 //actions
-import { addTodo } from '../actions'
+import { addTodo, toggleComplete } from '../actions'
+
+//Font Awesome 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faStar } from '@fortawesome/free-solid-svg-icons'
+
 
 class Todo extends Component {
 
@@ -19,11 +24,19 @@ class Todo extends Component {
         this.props.addTodo(this.state.newTodo);
       };
 
+      toggleFriend = (e, id) => {
+        e.preventDefault();
+        this.props.toggleComplete(id);
+      };
+
   render() {
     return (
       <div>
         {this.props.todos.map(todo => (
-          <div key={todo.id}>{todo.task}</div>
+          <div onClick={e => this.toggleFriend(e, todo.id)} key={todo.id}>
+            {todo.task}
+            {todo.completed && <FontAwesomeIcon icon={faStar} />}
+            </div>
         ))}
         <input
           type="text"
@@ -44,5 +57,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { addTodo }
+  { addTodo,  toggleComplete }
 )(Todo);
