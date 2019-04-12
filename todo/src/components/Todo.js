@@ -42,7 +42,8 @@ class Todo extends Component {
           type="text"
           value={this.state.newTodo}
           onChange={this.handleChanges}
-          placeholder="Add new member"
+          placeholder="Add New Task"
+        
         />
         <button onClick={this.handleAddFriend}>Add Task</button>
       </div>
