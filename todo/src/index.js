@@ -3,38 +3,40 @@ import React from "react";
 import ReactDOM from "react-dom";
 
 //styles
-import './index.css'
+import "./index.css";
 
-// Redux 
+// Redux
 import { createStore } from "redux";
 import { Provider } from "react-redux";
 
-//main Reducer 
+//main Reducer
 import rootReducer from "./reducers";
 
 //Components
-import Title from './components/Title'
+import Title from "./components/Title";
+import Todo from "./components/Todo";
 
-//Dummy Reducer 
+//Dummy Reducer
 // function reducer() {
 //   return {
 //     title: 'Hello world! I\'m in the Redux store!',
 //   }
 // }
 
-// store 
+// store
 const store = createStore(
-    rootReducer,
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-  );
+  rootReducer,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
 
-  function App() {
-      return(
-        <div className="App">
-           <Title/>
-        </div>
-      )
-  }
+function App() {
+  return (
+    <div className="App">
+      <Title />
+      <Todo />
+    </div>
+  );
+}
 
 ReactDOM.render(
   <Provider store={store}>
