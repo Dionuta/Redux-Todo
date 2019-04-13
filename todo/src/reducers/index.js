@@ -1,6 +1,6 @@
-import { ADD_TODO, TOGGLE_COMPLETE } from "../actions/index";
+import { ADD_TODO, TOGGLE_COMPLETE, DELETE } from "../actions/index";
 
-// the name says it all 
+// the name says it all
 const initialState = {
   todo: [
     { id: 1, task: "Clean room", completed: false },
@@ -11,16 +11,19 @@ const initialState = {
 export default (state = initialState, action) => {
   switch (action.type) {
     case ADD_TODO:
-      const newTodo = { // how the new todo should look 
+      const newTodo = {
+        // how the new todo should look
         task: action.payload,
         completed: false,
         id: Date.now()
       };
-      return {
-        ...state,
-        todo: [...state.todo, newTodo] // new todo list with newly added todo
+      if (action.payload.length !== 0) {
+        return {
+          ...state,
+          todo: [...state.todo, newTodo] // new todo list with newly added todo
+        };
       }
-      case TOGGLE_COMPLETE:
+    case TOGGLE_COMPLETE:
       return {
         ...state,
         todo: state.todo.map(todo =>
@@ -29,6 +32,13 @@ export default (state = initialState, action) => {
             : todo
         )
       };
+
+    case DELETE:
+      return {
+        ...state,
+        todo: state.todo.filter(todo => todo.id !== action.payload)
+      };
+
     default:
       return state;
   }

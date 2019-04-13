@@ -13,6 +13,7 @@ background: #FF9191
   text-align: center;
   padding: 36px;
   border: black solid 5px;
+  border-radius: 25%;
   width: 17%;
   background: white;
   margin-top: 10rem;
@@ -20,5 +21,6 @@ background: #FF9191
 }
 
 svg{
-  color: #DB1616;
+  color: #FF9191;
+  
 }

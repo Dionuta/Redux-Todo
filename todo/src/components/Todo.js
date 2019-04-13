@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 
 //actions
-import { addTodo, toggleComplete } from '../actions'
+import { addTodo, toggleComplete, deleteTodo } from '../actions'
 
 //Font Awesome 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -29,11 +29,17 @@ class Todo extends Component {
         this.props.toggleComplete(id);
       };
 
+      handleDeleteTodo= (e,id) => {
+        e.preventDefault();
+        this.props.deleteTodo(id)
+      }
+
   render() {
     return (
       <div>
         {this.props.todos.map(todo => (
           <div onClick={e => this.toggleFriend(e, todo.id)} key={todo.id}>
+            <button onClick={e => this.handleDeleteTodo(e, todo.id)}>X</button>
             {todo.task}
             {todo.completed && <FontAwesomeIcon icon={faStar} />}
             </div>
@@ -43,7 +49,6 @@ class Todo extends Component {
           value={this.state.newTodo}
           onChange={this.handleChanges}
           placeholder="Add New Task"
-        
         />
         <button onClick={this.handleAddFriend}>Add Task</button>
       </div>
@@ -58,5 +63,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { addTodo,  toggleComplete }
+  { addTodo,  toggleComplete, deleteTodo }
 )(Todo);
